@@ -7,8 +7,11 @@ import ddf.minim.ugens.*;
 
 // global var
 Minim minim;
-AudioPlayer song1;
-AudioMetaData songMetaData1;
+int numberOfSongs = 3;
+AudioPlayer[] song = new AudioPlayer[numberOfSongs];
+AudioMetaData[] songMetaData = new AudioMetaData[numberOfSongs];
+int loopIntNum = 1;
+int currentSong = numberOfSongs - numberOfSongs;
 color white=#FFFFFF;
 color reset;
 
@@ -18,36 +21,46 @@ void setup() {
   titleFont = createFont ("Impact", 55); 
   //
   quitButtonSetup();
-    minim = new Minim(this);
-  song1 = minim.loadFile("../../music/Muriel - Bobby Richards.mp3");
-  songMetaData1 = song1.getMetaData();
+  minim = new Minim(this);
+  song[currentSong] = minim.loadFile("../../music/Muriel - Bobby Richards.mp3");
+  song[currentSong+=1] = minim.loadFile("../../music/Phrase Prant - josh pan.mp3");
+  song[currentSong+=1] = minim.loadFile("../../music/Tak - Bobby Richards.mp3");
   //
+  currentSong = numberOfSongs - numberOfSongs;
+  for (int i = currentSong; i<numberOfSongs; i++) {
+    songMetaData[i] = song[i].getMetaData();
+  }
+}
+//
+
+{
   println("Start of Console");
   println("Click the Console to Finish Starting the Program");
   println("Press keyboard to test: K, etc");
   //
-  println("File Name: ", songMetaData1.fileName());
-  println("Song Length (in milliseconds);", songMetaData1.length());
-  println("Song Length ( in seconds);", songMetaData1.length()/1000);  
-  println("Song length ( in minutes and seconds;", songMetaData1.length()/60000);
-  println("Song Title:", songMetaData1.title());
-  println("Author:", songMetaData1.author());  
-  println("Composer",songMetaData1.composer());
-  println("albums", songMetaData1.album());
-  println("Disk", songMetaData1.disc());  
-  println("Publisher", songMetaData1.publisher());
-  println("Date Realease" ,songMetaData1.date());
-  println(songMetaData1);  
-  println(songMetaData1);
-  println(songMetaData1);
-  println(songMetaData1);  
-  println(songMetaData1);
-  println(songMetaData1);
-  println(songMetaData1);  
-  println(songMetaData1);
-  println(songMetaData1);
-  println(songMetaData1);
-}
+  
+    for ( int i=currentSong; i<numberOfSongs; i++) {
+      println("File Name: ", songMetaData[i].fileName() );
+      println("Song Length (in milliseconds); ", songMetaData[i].length() );
+      println("Song Length (in seconds): ", songMetaData[i].length()/1000 );
+      println("Song Length (in mintues and seconds): ", songMetaData[i].length()/1000/60, "minutes", (songMetaData[i].length()/1000)-(songMetaData[i].length()/1000/60 *60), "seconds" );
+      println("Song Title: ", songMetaData[i].title() );
+      println("Author: ", songMetaData[i].author() );
+      println("Composer: ", songMetaData[i].composer() );
+      println("Orchestra: ", songMetaData[i].orchestra() );
+      println("Albums: ", songMetaData[i].album() );
+      println("Disk: ", songMetaData[i].disc() );
+      println("Publisher: ", songMetaData[i].publisher() );
+      println("Date Release: ", songMetaData[i].date() );
+      println("Copyright: ", songMetaData[i].copyright() );
+      println("Comments: ", songMetaData[i].comment() );
+      println("Lyrics: ", songMetaData[i].lyrics() );
+      println("Track: ", songMetaData[i].track() );
+      println("Genre: ", songMetaData[i].genre() );
+      println("Encoded: ", songMetaData[i].encoded() );
+    }
+  }
+
 
 void draw() {
   background(white); 
@@ -55,36 +68,51 @@ void draw() {
   quitButtonDraw();
 }
 void keyPressed() {
-  if (key == 'k' || key == 'K' ) {
-    if ( song1.isPlaying()  ) {
-      song1.pause();
+  if ( key == 'p' || key == 'P' ) {//Play-Pause Button
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+    } else if ( song[currentSong].position() == song[currentSong].length() ) {//.legnth() = end
+      song[currentSong].rewind();
+      song[currentSong].play();
     } else {
-      song1.play();
+      song[currentSong].play();
     }
-  }
-}
-//
-{
-  if ( key == 's' || key == 'S') {
-    if (song1.isPlaying() ) {
-      song1.pause();
-      song1.rewind();
-    } else if ( song1.position() == song1.length() ) {
-      song1.rewind();
+  }//End of Play-Pause Button
+  //
+  if (key == 's' || key == 'S') {//Stop Button
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+    } else if ( song[currentSong].position() == song[currentSong].length() ) {//.legnth() = end
+      song[currentSong].rewind();
+    } else { //Song is not playing
+      song[currentSong].rewind();
+    }
+  }// End Stop Button
+  //
+  if ( key == 'f' || key == 'F') song[currentSong].skip(1000); // skip forward 1 second (1000 milliseconds)
+  if ( key == 'r' || key == 'R') song[currentSong].skip(-1000); // skip backward 1 second (1000 milliseconds)
+  //
+  if ( key == 'l' || key =='L' ) song[currentSong].loop(loopIntNum); //Loop Button
+  //
+  if ( key == 'n' || key == 'N') {
+    if (song[currentSong].isPlaying()) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      currentSong++;
+      song[currentSong].play();
+      
     } else {
-      song1.rewind();
+      song[currentSong].rewind();
+      currentSong++;
     }
+    ;
   }
+}{
+if ( key == 'b' || key == 'B') {
+  currentSong--;
 }
-//
-{
-  if ( key == 'f' || key == 'F') song1.skip(1000);
-  if ( key == 'r' || key == 'R') song1.skip(-1000);
 }
-{
-  if (key == 'l' || key == 'L' ) song1.loop();
-}
-
 void mouseClicked() { 
   quitButtonMouseClicked();
   musicPlayerButtons();
