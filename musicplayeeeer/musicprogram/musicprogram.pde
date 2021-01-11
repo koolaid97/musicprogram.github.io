@@ -8,16 +8,45 @@ import ddf.minim.ugens.*;
 // global var
 Minim minim;
 AudioPlayer song1;
+AudioMetaData songMetaData1;
 color white=#FFFFFF;
 color reset;
 
 
 void setup() {
   fullScreen();
-  titleFont = createFont ("Harrington", 55); //Must also Tools / Create Font / Find Font / Do Not Press "OK"
-
+  titleFont = createFont ("Impact", 55); 
+  //
   quitButtonSetup();
-  musicSongs();
+    minim = new Minim(this);
+  song1 = minim.loadFile("../../music/Muriel - Bobby Richards.mp3");
+  songMetaData1 = song1.getMetaData();
+  //
+  println("Start of Console");
+  println("Click the Console to Finish Starting the Program");
+  println("Press keyboard to test: K, etc");
+  //
+  println("File Name: ", songMetaData1.fileName());
+  println("Song Length (in milliseconds);", songMetaData1.length());
+  println("Song Length ( in seconds);", songMetaData1.length()/1000);  
+  println("Song length ( in minutes and seconds;", songMetaData1.length()/60000);
+  println("Song Title:", songMetaData1.title());
+  println("Author:", songMetaData1.author());  
+  println("Composer",songMetaData1.composer());
+  println("albums", songMetaData1.album());
+  println("Disk", songMetaData1.disc());  
+  println("Publisher", songMetaData1.publisher());
+  println("Date Realease" ,songMetaData1.date());
+  println(songMetaData1);  
+  println(songMetaData1);
+  println(songMetaData1);
+  println(songMetaData1);  
+  println(songMetaData1);
+  println(songMetaData1);
+  println(songMetaData1);  
+  println(songMetaData1);
+  println(songMetaData1);
+  println(songMetaData1);
 }
 
 void draw() {
