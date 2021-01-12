@@ -36,30 +36,30 @@ void setup() {
 {
   println("Start of Console");
   println("Click the Console to Finish Starting the Program");
-  println("Press keyboard to test: K, etc");
+  println("Press keyboard to test: p, etc");
   //
-  
-    for ( int i=currentSong; i<numberOfSongs; i++) {
-      println("File Name: ", songMetaData[i].fileName() );
-      println("Song Length (in milliseconds); ", songMetaData[i].length() );
-      println("Song Length (in seconds): ", songMetaData[i].length()/1000 );
-      println("Song Length (in mintues and seconds): ", songMetaData[i].length()/1000/60, "minutes", (songMetaData[i].length()/1000)-(songMetaData[i].length()/1000/60 *60), "seconds" );
-      println("Song Title: ", songMetaData[i].title() );
-      println("Author: ", songMetaData[i].author() );
-      println("Composer: ", songMetaData[i].composer() );
-      println("Orchestra: ", songMetaData[i].orchestra() );
-      println("Albums: ", songMetaData[i].album() );
-      println("Disk: ", songMetaData[i].disc() );
-      println("Publisher: ", songMetaData[i].publisher() );
-      println("Date Release: ", songMetaData[i].date() );
-      println("Copyright: ", songMetaData[i].copyright() );
-      println("Comments: ", songMetaData[i].comment() );
-      println("Lyrics: ", songMetaData[i].lyrics() );
-      println("Track: ", songMetaData[i].track() );
-      println("Genre: ", songMetaData[i].genre() );
-      println("Encoded: ", songMetaData[i].encoded() );
-    }
+
+  for ( int i=currentSong; i<numberOfSongs; i++) {
+    println("File Name: ", songMetaData[i].fileName() );
+    println("Song Length (in milliseconds); ", songMetaData[i].length() );
+    println("Song Length (in seconds): ", songMetaData[i].length()/1000 );
+    println("Song Length (in mintues and seconds): ", songMetaData[i].length()/1000/60, "minutes", (songMetaData[i].length()/1000)-(songMetaData[i].length()/1000/60 *60), "seconds" );
+    println("Song Title: ", songMetaData[i].title() );
+    println("Author: ", songMetaData[i].author() );
+    println("Composer: ", songMetaData[i].composer() );
+    println("Orchestra: ", songMetaData[i].orchestra() );
+    println("Albums: ", songMetaData[i].album() );
+    println("Disk: ", songMetaData[i].disc() );
+    println("Publisher: ", songMetaData[i].publisher() );
+    println("Date Release: ", songMetaData[i].date() );
+    println("Copyright: ", songMetaData[i].copyright() );
+    println("Comments: ", songMetaData[i].comment() );
+    println("Lyrics: ", songMetaData[i].lyrics() );
+    println("Track: ", songMetaData[i].track() );
+    println("Genre: ", songMetaData[i].genre() );
+    println("Encoded: ", songMetaData[i].encoded() );
   }
+}
 
 
 void draw() {
@@ -99,19 +99,44 @@ void keyPressed() {
     if (song[currentSong].isPlaying()) {
       song[currentSong].pause();
       song[currentSong].rewind();
-      currentSong++;
+      if (currentSong == numberOfSongs -1) {
+        currentSong= numberOfSongs- numberOfSongs;
+      } else {
+        currentSong++;
+      }
       song[currentSong].play();
-      
     } else {
       song[currentSong].rewind();
-      currentSong++;
+      if (currentSong == numberOfSongs -1) {
+        currentSong= numberOfSongs- numberOfSongs;
+      } else { 
+        currentSong++;
+      }
     }
     ;
   }
-}{
-if ( key == 'b' || key == 'B') {
-  currentSong--;
 }
+{
+  if ( key == 'b' || key == 'B') {    
+    if (song[currentSong].isPlaying()) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      if (currentSong == numberOfSongs- numberOfSongs) {
+        currentSong = numberOfSongs -1;
+      } else {
+        currentSong--;
+      }
+      song[currentSong].play();
+    } else {
+      song[currentSong].rewind();
+      if (currentSong == numberOfSongs -1) {
+        currentSong= numberOfSongs- numberOfSongs;
+      } else { 
+        currentSong++;
+      }
+    }
+    currentSong--;
+  }
 }
 void mouseClicked() { 
   quitButtonMouseClicked();
