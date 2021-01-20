@@ -6,7 +6,7 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 // global var
-color black=#272626;
+color black=#272626, red=#FF0313;
 float r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20;
 Minim minim;
 int numberOfSongs = 3;
@@ -74,12 +74,17 @@ r9=width*1/1.94;
 r10=height*1/2.08;
 r11=width*1/85;
 r12=height*1/17;
+r13=width*1/30;
+r14= height*1/15;
+r15=width*1/15;
+r16=height*1/15;
 //
 fill(green);
 rect(r1,r2,r3,r4);
 fill(black);
 rect(r5,r6,r7,r8);
 rect(r9,r10,r11,r12);
+fill(red);
 rect(r13,r14,r15,r16);
 
 }
