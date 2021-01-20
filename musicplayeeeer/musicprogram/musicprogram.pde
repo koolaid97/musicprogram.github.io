@@ -6,6 +6,8 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 // global var
+color black=#272626;
+float r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20;
 Minim minim;
 int numberOfSongs = 3;
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
@@ -30,7 +32,7 @@ void setup() {
   for (int i = currentSong; i<numberOfSongs; i++) {
     songMetaData[i] = song[i].getMetaData();
   }
-}
+
 //
 
 {
@@ -39,7 +41,7 @@ void setup() {
   println("Press keyboard to test: p, etc");
   //
 
- for ( int i=currentSong; i<numberOfSongs; i++) {
+  for ( int i=currentSong; i<numberOfSongs; i++) {
     println("File Name: ", songMetaData[i].fileName() );
     println("Song Length (in milliseconds); ", songMetaData[i].length() );
     println("Song Length (in seconds): ", songMetaData[i].length()/1000 );
@@ -60,10 +62,31 @@ void setup() {
     println("Encoded: ", songMetaData[i].encoded() );
   }
 }
+r1=width*1/2.1;
+r2=height*1/2.1;
+r3=width*1/15;
+r4=height*1/15;
+r5=width*1/2.03;
+r6=height*1/2.08;
+r7=width*1/85;
+r8=height*1/17;
+r9=width*1/1.94;
+r10=height*1/2.08;
+r11=width*1/85;
+r12=height*1/17;
+//
+fill(green);
+rect(r1,r2,r3,r4);
+fill(black);
+rect(r5,r6,r7,r8);
+rect(r9,r10,r11,r12);
+rect(r13,r14,r15,r16);
+
+}
 //
 
 void draw() {
-  background(white); 
+ 
 
   quitButtonDraw();
 }
