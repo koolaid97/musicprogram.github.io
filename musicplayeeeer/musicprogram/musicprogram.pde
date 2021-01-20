@@ -39,7 +39,7 @@ void setup() {
   println("Press keyboard to test: p, etc");
   //
 
-  for ( int i=currentSong; i<numberOfSongs; i++) {
+ for ( int i=currentSong; i<numberOfSongs; i++) {
     println("File Name: ", songMetaData[i].fileName() );
     println("Song Length (in milliseconds); ", songMetaData[i].length() );
     println("Song Length (in seconds): ", songMetaData[i].length()/1000 );
@@ -60,11 +60,11 @@ void setup() {
     println("Encoded: ", songMetaData[i].encoded() );
   }
 }
-
+//
 
 void draw() {
   background(white); 
-  musicPlayerGUI_Setup();
+
   quitButtonDraw();
 }
 void keyPressed() {
@@ -140,5 +140,4 @@ void keyPressed() {
 }
 void mouseClicked() { 
   quitButtonMouseClicked();
-  musicPlayerButtons();
 }
