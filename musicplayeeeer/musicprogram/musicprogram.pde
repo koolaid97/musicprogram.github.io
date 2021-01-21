@@ -13,6 +13,11 @@ int numberOfSongs = 3;
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 AudioMetaData[] songMetaData = new AudioMetaData[numberOfSongs];
 int loopIntNum = 1;
+String title2="Fast foward";
+String title3="Reverse";
+String title4="looooop";
+String title5 ="next";
+String title6= "previous";
 int currentSong = numberOfSongs - numberOfSongs;
 color white=#FFFFFF;
 color reset;
@@ -78,14 +83,19 @@ r13=width*1/30;
 r14= height*1/15;
 r15=width*1/15;
 r16=height*1/15;
+r17=width*1/21;
+r18=height*1/15;
+r19=width*1/25;
+r20= height*1/15;
 //
 fill(green);
 rect(r1,r2,r3,r4);
-fill(black);
-rect(r5,r6,r7,r8);
-rect(r9,r10,r11,r12);
 fill(red);
 rect(r13,r14,r15,r16);
+fill(black);
+rect(r17,r18,r19,r20);
+rect(r5,r6,r7,r8);
+rect(r9,r10,r11,r12);
 
 }
 //

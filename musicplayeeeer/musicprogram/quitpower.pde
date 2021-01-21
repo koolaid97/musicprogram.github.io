@@ -1,7 +1,7 @@
 color purple = #FF03F3;
 color yellow = #FFF703;
 color green=#00CE24;
-String title= "on";
+String title= "X";
 PFont titleFont;
 
 void quitButtonSetup() {
