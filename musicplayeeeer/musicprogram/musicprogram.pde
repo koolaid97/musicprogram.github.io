@@ -299,6 +299,30 @@ void mouseClicked() {
       currentSong--;
     }
   }
-  if ( mouseX>r29  && mouseX<r29+31  && mouseY>r30 && mouseY<r30+r32)
+  if ( mouseX>r29  && mouseX<r29+31  && mouseY>r30 && mouseY<r30+r32) {
     song[currentSong].skip(-5000);
+  }
+  if ( mouseX>r33  && mouseX<r33+35  && mouseY>r34 && mouseY<r34+r36) {
+    song[currentSong].skip(5000);
+  }
+  if ( mouseX>r33  && mouseX<r33+35  && mouseY>r34 && mouseY<r34+r36) {
+    if (song[currentSong].isPlaying()) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      if (currentSong == numberOfSongs -1) {
+        currentSong= numberOfSongs- numberOfSongs;
+      } else {
+        currentSong++;
+      }
+      song[currentSong].play();
+    } else {
+      song[currentSong].rewind();
+      if (currentSong == numberOfSongs -1) {
+        currentSong= numberOfSongs- numberOfSongs;
+      } else { 
+        currentSong++;
+      }
+    }
+    ;
+  }
 }
