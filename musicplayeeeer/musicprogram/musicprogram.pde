@@ -253,4 +253,52 @@ void keyPressed() {
 }
 void mouseClicked() { 
   quitButtonMouseClicked();
+  if ( mouseX>r1  && mouseX<r1+r3  && mouseY>r2 && mouseY<r2+r4) {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+    } else if ( song[currentSong].position() == song[currentSong].length() ) {//.legnth() = end
+      song[currentSong].rewind();
+      song[currentSong].play();
+    } else {
+      song[currentSong].play();
+    }
+  }
+  if ( mouseX>r13  && mouseX<r13+r15  && mouseY>r14 && mouseY<r14+r16)
+  {//Stop Button
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+    } else if ( song[currentSong].position() == song[currentSong].length() ) {//.legnth() = end
+      song[currentSong].rewind();
+    } else { //Song is not playing
+      song[currentSong].rewind();
+    }
+  }
+  if ( mouseX>r21  && mouseX<r21+r23  && mouseY>r22 && mouseY<r22+r24) {
+    song[currentSong].loop(loopIntNum);
+  }
+  if ( mouseX>r25  && mouseX<r25+r27  && mouseY>r26 && mouseY<r26+r28) {
+    {    
+      if (song[currentSong].isPlaying()) {
+        song[currentSong].pause();
+        song[currentSong].rewind();
+        if (currentSong == numberOfSongs- numberOfSongs) {
+          currentSong = numberOfSongs -1;
+        } else {
+          currentSong--;
+        }
+        song[currentSong].play();
+      } else {
+        song[currentSong].rewind();
+        if (currentSong == numberOfSongs -1) {
+          currentSong= numberOfSongs- numberOfSongs;
+        } else { 
+          currentSong++;
+        }
+      }
+      currentSong--;
+    }
+  }
+  if ( mouseX>r29  && mouseX<r29+31  && mouseY>r30 && mouseY<r30+r32)
+    song[currentSong].skip(-5000);
 }
