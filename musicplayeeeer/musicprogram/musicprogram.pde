@@ -6,6 +6,8 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 // global var
+PImage pic1, pic2, pic3;
+float picX1, picY1, picImageWidthRatio1, picImageHeightRatio1, picWidth1, picHeight1, picX2, picY2, picImageWidthRatio2, picImageHeightRatio2, picWidth2, picHeight2, picX3, picY3, picImageWidthRatio3, picImageHeightRatio3, picWidth3, picHeight3;
 color black=#272626, red=#FF0313;
 float r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22, r23, r24, r25, r26, r27, r28, r29, r30, r31, r32, r33, r34, r35, r36, r37, r38, r39, r40;
 Minim minim;
@@ -28,11 +30,14 @@ void setup() {
   fullScreen();
   titleFont = createFont ("Impact", 55); 
   //
+  pic1= loadImage("muriel.jpg");
+  pic2= loadImage("prant.jpg");
+  pic3= loadImage("tak.jpg");
   quitButtonSetup();
   minim = new Minim(this);
-  song[currentSong] = minim.loadFile("../../music/Muriel - Bobby Richards.mp3");
-  song[currentSong+1] = minim.loadFile("../../music/Phrase Prant - josh pan.mp3");
-  song[currentSong+2] = minim.loadFile("../../music/Tak - Bobby Richards.mp3");
+  song[0] = minim.loadFile("../../music/Muriel - Bobby Richards.mp3");
+  song[1] = minim.loadFile("../../music/Phrase Prant - josh pan.mp3");
+  song[2] = minim.loadFile("../../music/Tak - Bobby Richards.mp3");
   //
   currentSong = numberOfSongs - numberOfSongs;
   for (int i = currentSong; i<numberOfSongs; i++) {
@@ -172,6 +177,29 @@ void setup() {
   textFont(titleFont);
   text(title6, t21, t22, t23, t24);
   textAlign (CENTER, CENTER);
+
+  picImageWidthRatio1 = 700.0/700.0; //Image width is longer, thus 1
+  picImageHeightRatio1 = 600.0/700.0; //Image height is shorter, thus <1
+  picX1 = width*1/4;
+  picY1 = height*0;
+  picWidth1 = width*2/4 * picImageWidthRatio1; //remains longer side, "*1"
+  picHeight1 = height*1/2.2 * picImageHeightRatio1; //becomes shorter side, "*<1"
+  if (picHeight1 >height*1/2) println("Image #1 display issues"); //dimension might be 'cut-off'
+  //
+  picImageWidthRatio2 = 700.0/700.0; //Image width is longer, thus 1
+  picImageHeightRatio2 = 600.0/700.0; //Image height is shorter, thus <1
+  picX2 = width*1/4;
+  picY2 = height*0;
+  picWidth2 = width*2/4 * picImageWidthRatio2; //remains longer side, "*1"
+  picHeight2 = height*1/3 * picImageHeightRatio2; //becomes shorter side, "*<1"
+  if (picHeight2 >height*1/2) println("Image #1 display issues"); //dimension might be 'cut-off'
+  picImageWidthRatio3 = 700.0/700.0; //Image width is longer, thus 1
+  picImageHeightRatio3 = 600.0/700.0; //Image height is shorter, thus <1
+  picX3 = width*1/4;
+  picY3 = height*0;
+  picWidth3 = width*2/4 * picImageWidthRatio3; //remains longer side, "*1"
+  picHeight3 = height*1/3 * picImageHeightRatio3; //becomes shorter side, "*<1"
+  if (picHeight3 >height*1/2) println("Image #1 display issues"); //dimension might be 'cut-off'
 }
 //
 
@@ -179,6 +207,17 @@ void draw() {
 
 
   quitButtonDraw();
+
+  if (song[0].isPlaying()) {
+    image(pic1, picX1, picY1, picWidth1, picHeight1);
+  }
+  if (song[1].isPlaying()) {
+    image(pic2, picX2, picY2, picWidth2, picHeight2);
+  }
+  if (song[2].isPlaying()) {
+    image(pic3, picX3, picY3, picWidth3, picHeight3);
+  }
+  //
 }
 void keyPressed() {
   if ( key == 'p' || key == 'P' ) {//Play-Pause Button
@@ -251,6 +290,7 @@ void keyPressed() {
     currentSong--;
   }
 }
+
 void mouseClicked() { 
   quitButtonMouseClicked();
   if ( mouseX>r1  && mouseX<r1+r3  && mouseY>r2 && mouseY<r2+r4) {
@@ -325,6 +365,4 @@ void mouseClicked() {
     }
     ;
   }
-  
-  
 }
