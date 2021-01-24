@@ -31,8 +31,8 @@ void setup() {
   quitButtonSetup();
   minim = new Minim(this);
   song[currentSong] = minim.loadFile("../../music/Muriel - Bobby Richards.mp3");
-  song[currentSong+=1] = minim.loadFile("../../music/Phrase Prant - josh pan.mp3");
-  song[currentSong+=1] = minim.loadFile("../../music/Tak - Bobby Richards.mp3");
+  song[currentSong+1] = minim.loadFile("../../music/Phrase Prant - josh pan.mp3");
+  song[currentSong+2] = minim.loadFile("../../music/Tak - Bobby Richards.mp3");
   //
   currentSong = numberOfSongs - numberOfSongs;
   for (int i = currentSong; i<numberOfSongs; i++) {
@@ -305,7 +305,7 @@ void mouseClicked() {
   if ( mouseX>r33  && mouseX<r33+35  && mouseY>r34 && mouseY<r34+r36) {
     song[currentSong].skip(5000);
   }
-  if ( mouseX>r33  && mouseX<r33+35  && mouseY>r34 && mouseY<r34+r36) {
+  if ( mouseX>r37  && mouseX<r37+39  && mouseY>r38 && mouseY<r38+r40) {
     if (song[currentSong].isPlaying()) {
       song[currentSong].pause();
       song[currentSong].rewind();
@@ -325,4 +325,6 @@ void mouseClicked() {
     }
     ;
   }
+  
+  
 }
